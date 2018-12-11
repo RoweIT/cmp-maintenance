@@ -16,6 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Remove server identification
+app.use(function (req, res, next) {
+  res.removeHeader('X-Powered-By');
+  next();
+});
+
 // Only server public static files
 app.use(express.static('public'))
 
